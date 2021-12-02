@@ -27,3 +27,33 @@ var classifier= ml5.imageClassifier("https://teachablemachine.withgoogle.com/mod
 function modelLoaded(){
     console.log("modelLoaded")
 }
+
+function cam(){
+    var img=document.getElementById("capture_img")
+    classifier.classify(img,gotResults)
+    }
+    function gotResults(error,results){
+    if(error){
+        console.log(error)
+    }
+    else if(results){
+        console.log(results)
+        document.getElementById("result_emotion_name").innerHTML=results[0].label
+        prediction_1=results[0].label
+        ttos()
+        if(prediction_1=="ok"){
+    document.getElementById("emo").innerHTML="&#128076;"
+        }
+    
+        
+        if(prediction_1=="thumbs up"){
+            document.getElementById("emo").innerHTML="&#128077;"
+        }
+    
+    
+        if(prediction_1=="peace"){
+            document.getElementById("emo").innerHTML="&#9996;"
+        }
+
+    }
+    }
